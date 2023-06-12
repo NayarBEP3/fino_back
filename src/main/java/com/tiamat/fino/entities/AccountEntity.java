@@ -16,9 +16,4 @@ public class AccountEntity {
     private String id;
     private String name;
     private AccountStatusEnum status;
-
-    public AccountEntity(String name, AccountStatusEnum status) {
-        this.name = name;
-        this.status = status;
-    }
 }

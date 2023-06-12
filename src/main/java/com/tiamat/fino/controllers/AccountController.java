@@ -29,4 +29,10 @@ public class AccountController {
     public List<AccountDto> getAccounts() {
         return service.getAllAccounts();
     }
+
+    @DeleteMapping(path = "/delete/{id}")
+    public void deleteAccount(@PathVariable String id) {
+        service.deleteAccount(id);
+    }
+
 }

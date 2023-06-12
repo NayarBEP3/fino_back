@@ -30,7 +30,12 @@ public class AccountService {
     public List<AccountDto> getAllAccounts() {
         List<AccountEntity> accountEntities = repository.findAll();
         List<AccountDto> accountDtos = new ArrayList<>();
-        accountEntities.forEach(accountEntity -> accountDtos.add(mapper.map(accountDtos, AccountDto.class)));
+        accountEntities.forEach(accountEntity -> accountDtos.add(mapper.map(accountEntity, AccountDto.class)));
         return accountDtos;
     }
+
+    public void deleteAccount(String id) {
+        repository.deleteById(id);
+    }
+
 }
