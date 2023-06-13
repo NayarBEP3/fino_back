@@ -13,4 +13,10 @@ public class ValidationUtils {
         }
     }
 
+    public static void getValueFromOptional(Optional<?> object, String message) {
+        if(object.isEmpty()) {
+            throw new NotFoundException(message);
+        }
+    }
+
 }
