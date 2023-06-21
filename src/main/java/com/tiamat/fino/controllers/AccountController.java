@@ -35,4 +35,13 @@ public class AccountController {
         service.deleteAccount(id);
     }
 
+    @GetMapping(path = "/{id}")
+    public AccountDto getAccount(@PathVariable String id) {
+        return service.getAccount(id);
+    }
+
+    @PutMapping(path = "/update/{id}")
+    public AccountDto updateAccount(@PathVariable String id, @RequestBody AddAccountDto addAccountDto) {
+        return service.updateAccount(addAccountDto, id);
+    }
 }
