@@ -12,4 +12,5 @@ public class AccountDto {
     private String id;
     private String name;
     private AccountStatusEnum status;
+    private String userId;
 }
