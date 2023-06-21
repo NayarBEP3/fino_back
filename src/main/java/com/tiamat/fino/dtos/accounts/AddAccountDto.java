@@ -13,9 +13,11 @@ import lombok.NoArgsConstructor;
 public class AddAccountDto {
     private String name;
     private AccountStatusEnum status;
+    private String userId;
 
     public void validate() {
         ValidationUtils.validateMandatory(this.name, "Error: Account name is mandatory");
+        ValidationUtils.validateMandatory(this.userId, "Error: User Id is mandatory");
     }
 
 }
