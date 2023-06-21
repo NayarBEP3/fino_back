@@ -20,4 +20,10 @@ public class AddAccountDto {
         ValidationUtils.validateMandatory(this.userId, "Error: User Id is mandatory");
     }
 
+    public void validate(String accountId) {
+        ValidationUtils.validateMandatory(accountId, "Error: Account id is mandatory");
+        ValidationUtils.validateMandatory(this.name, "Error: Account name is mandatory");
+        ValidationUtils.validateMandatory(this.userId, "Error: User Id is mandatory");
+    }
+
 }
