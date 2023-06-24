@@ -29,9 +29,22 @@ public class UserService {
     }
 
     public UserDto getUser(String id) {
+        return mapper.map(getUserEntity(id), UserDto.class);
+    }
+
+    public UserDto updateUser(AddUserDto addUserDto, String id) {
+        UserEntity userEntityFound = getUserEntity(id);
+        UserEntity userEntity = mapper.map(addUserDto, UserEntity.class);
+        userEntity.setId(id);
+        userEntity.setPass(userEntityFound.getPass());
+        userEntity = repository.save(userEntity);
+        return mapper.map(userEntity, UserDto.class);
+    }
+
+    private UserEntity getUserEntity(String id) {
         Optional<UserEntity> userEntityOptional = repository.findById(id);
         ValidationUtils.getValueFromOptional(userEntityOptional, "Error: User not found");
-        return mapper.map(userEntityOptional.get(), UserDto.class);
+        return userEntityOptional.get();
     }
 
 }
