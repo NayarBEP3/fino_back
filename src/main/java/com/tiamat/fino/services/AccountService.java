@@ -57,13 +57,13 @@ public class AccountService {
 
     public AccountDto getAccount(String accountId) {
         Optional<AccountEntity> accountDto = repository.findById(accountId);
-        ValidationUtils.getValueFromOptional(accountDto, "Error: Account not found.");
+        ValidationUtils.validateMandatory(accountDto, "Error: Account not found.");
         return mapper.map(accountDto.get(), AccountDto.class);
     }
 
     private void validateUserById(String userId) {
         Optional<UserEntity> userEntityOptional= userRepository.findById(userId);
-        ValidationUtils.getValueFromOptional(userEntityOptional, "Error: User not found.");
+        ValidationUtils.validateMandatory(userEntityOptional, "Error: User not found.");
     }
 
 }
