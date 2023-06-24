@@ -43,7 +43,7 @@ public class UserService {
 
     private UserEntity getUserEntity(String id) {
         Optional<UserEntity> userEntityOptional = repository.findById(id);
-        ValidationUtils.getValueFromOptional(userEntityOptional, "Error: User not found");
+        ValidationUtils.validateMandatory(userEntityOptional, "Error: User not found");
         return userEntityOptional.get();
     }
 
