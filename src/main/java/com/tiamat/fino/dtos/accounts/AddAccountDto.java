@@ -13,17 +13,17 @@ import lombok.NoArgsConstructor;
 public class AddAccountDto {
     private String name;
     private AccountStatusEnum status;
-    private String userId;
+    private String user;
 
     public void validate() {
         ValidationUtils.validateMandatory(this.name, "Error: Account name is mandatory");
-        ValidationUtils.validateMandatory(this.userId, "Error: User Id is mandatory");
+        ValidationUtils.validateMandatory(this.user, "Error: User Id is mandatory");
     }
 
-    public void validate(String accountId) {
-        ValidationUtils.validateMandatory(accountId, "Error: Account id is mandatory");
+    public void validate(String account) {
+        ValidationUtils.validateMandatory(account, "Error: Account id is mandatory");
         ValidationUtils.validateMandatory(this.name, "Error: Account name is mandatory");
-        ValidationUtils.validateMandatory(this.userId, "Error: User Id is mandatory");
+        ValidationUtils.validateMandatory(this.user, "Error: User Id is mandatory");
     }
 
 }

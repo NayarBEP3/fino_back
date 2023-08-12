@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,9 +28,9 @@ public class TransactionService {
     }
 
     public TransactionDto createTransaction(AddTransactionDto addTransactionDto) {
+        addTransactionDto.validate();
         TransactionEntity transactionEntity = mapper.map(addTransactionDto, TransactionEntity.class);
-        AccountEntity accountEntity = getAccountEntityById(addTransactionDto.getAccountId());
-        transactionEntity.setAccount(accountEntity);
+        this.getAccountEntityById(addTransactionDto.getAccount());
         transactionEntity = transactionRepository.save(transactionEntity);
         return mapper.map(transactionEntity, TransactionDto.class);
     }
@@ -39,9 +41,17 @@ public class TransactionService {
         return mapper.map(transaction.get(), TransactionDto.class);
     }
 
-    private AccountEntity getAccountEntityById(String id) {
+    public List<TransactionDto> getAllTransactionsByAccountId(String id) {
+        List<TransactionEntity> transactionEntities = transactionRepository.getTransactionByAccount(id);
+        List<TransactionDto> transactionDtos = new ArrayList<>();
+        transactionEntities.forEach(transactionEntity ->
+                transactionDtos.add(mapper.map(transactionEntity, TransactionDto.class)));
+        return transactionDtos;
+    }
+
+    private void getAccountEntityById(String id) {
         Optional<AccountEntity> accountEntity = accountRepository.findById(id);
         ValidationUtils.validateMandatory(accountEntity, "Error: Account doesn't exist.");
-        return accountEntity.get();
     }
+
 }

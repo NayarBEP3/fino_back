@@ -17,5 +17,5 @@ public class TransactionEntity {
     private String description;
     private double amount;
     private TransactionTypeEnum transactionType;
-    private AccountEntity account;
+    private String account;
 }

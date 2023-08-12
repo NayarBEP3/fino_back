@@ -6,6 +6,8 @@ import com.tiamat.fino.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/transaction")
 public class TransactionController {
@@ -24,5 +26,10 @@ public class TransactionController {
     @GetMapping(path = "/{id}")
     public TransactionDto transactionDto(@PathVariable String id) {
         return transactionService.getTransactionById(id);
+    }
+
+    @GetMapping(path = "/all/{id}")
+    public List<TransactionDto> transactions(@PathVariable String id) {
+        return transactionService.getAllTransactionsByAccountId(id);
     }
 }
