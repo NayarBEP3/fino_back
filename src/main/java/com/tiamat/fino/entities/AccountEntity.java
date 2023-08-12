@@ -16,5 +16,5 @@ public class AccountEntity {
     private String id;
     private String name;
     private AccountStatusEnum status;
-    private String userId;
+    private String user;
 }

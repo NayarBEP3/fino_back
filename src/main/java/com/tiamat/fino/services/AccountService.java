@@ -28,7 +28,7 @@ public class AccountService {
 
     public AccountDto addAccount(AddAccountDto addAccountDto) {
         addAccountDto.validate();
-        this.validateUserById(addAccountDto.getUserId());
+        this.validateUserById(addAccountDto.getUser());
         AccountEntity accountEntity = mapper.map(addAccountDto, AccountEntity.class);
         accountEntity = repository.save(accountEntity);
         return mapper.map(accountEntity, AccountDto.class);
@@ -48,7 +48,7 @@ public class AccountService {
     public AccountDto updateAccount(AddAccountDto addAccountDto, String accountId) {
         addAccountDto.validate(accountId);
         this.getAccount(accountId);
-        this.validateUserById(addAccountDto.getUserId());
+        this.validateUserById(addAccountDto.getUser());
         AccountEntity accountEntity = mapper.map(addAccountDto, AccountEntity.class);
         accountEntity.setId(accountId);
         accountEntity = repository.save(accountEntity);
